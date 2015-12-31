@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
@@ -30,7 +31,7 @@ public enum SystemConfigurator {
 		configurator.put(name, loadPropertiesFromFile(filePath));
 	}
 	
-	public void addProperties(String name, Properties properties){
+	public static void addProperties(String name, Properties properties){
 		configurator.put(name, properties);
 	}
 	
@@ -77,7 +78,10 @@ public enum SystemConfigurator {
 	}
 	
 	public Set<String> keySet(){
-		return configurator.keySet();
+		Set<String> result = new HashSet<String>();
+		for(String name:configurator.keySet())
+			result.add(name);
+		return result;
 	}
 	
 	private Object readResolve(){
