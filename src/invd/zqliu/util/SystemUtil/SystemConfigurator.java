@@ -3,6 +3,7 @@ package invd.zqliu.util.SystemUtil;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -14,10 +15,13 @@ public enum SystemConfigurator {
 	INSTANCE;
 	
 	private Map<String, Properties> configurator;
+	private String configBase;
 	SystemConfigurator(){
 		configurator = new HashMap<String, Properties>();
 		try {
-			loadConfigFile("resources/config.xml");
+			configBase = EnviromentConfigurator.INSTANCE.getProperty("ConfigBase");
+			String config = EnviromentConfigurator.INSTANCE.getProperty("Config");
+			loadConfigFile(config);
 		} catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -35,9 +39,9 @@ public enum SystemConfigurator {
 		configurator.put(name, properties);
 	}
 	
-	public Properties loadPropertiesFromFile(String filePath) throws IOException, IllegalArgumentException{
+	public Properties loadPropertiesFromFile(String filePath) throws IOException{
 		Properties properties = new Properties();
-		File file = new File(filePath);
+		File file = new File(configBase+filePath);
 		FileInputStream fis = new FileInputStream(file);
 		
 		if(filePath.endsWith(".properties")){
@@ -53,16 +57,15 @@ public enum SystemConfigurator {
 		return properties;
 	}
 	
-	public void loadConfigFile(String configPath) throws IOException, IllegalArgumentException{
+	public void loadConfigFile(String configPath) throws IOException{
 		Properties config = loadPropertiesFromFile(configPath);
 		loadConfigProperties(config);
 	}
 	
 	public void loadConfigProperties(Properties config){
-		Iterator<Object> it = config.keySet().iterator();
-		while(it.hasNext()){
+		for(Object key:config.keySet()){
 			try{
-				String name = (String)it.next();
+				String name = (String)key;
 				String filePath = config.getProperty(name);
 				addProperties(name,filePath);
 			}catch(IllegalArgumentException iae){
