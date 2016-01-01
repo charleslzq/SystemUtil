@@ -13,8 +13,8 @@ import java.util.Set;
 public enum SystemConfigurator {
 	INSTANCE;
 	
-	private static Map<String, Properties> configurator;
-	static{
+	private Map<String, Properties> configurator;
+	SystemConfigurator(){
 		configurator = new HashMap<String, Properties>();
 		try {
 			loadConfigFile("resources/config.xml");
@@ -27,15 +27,15 @@ public enum SystemConfigurator {
 		}
 	}
 	
-	public static void addProperties(String name, String filePath) throws IOException, IllegalArgumentException{
+	public void addProperties(String name, String filePath) throws IOException, IllegalArgumentException{
 		configurator.put(name, loadPropertiesFromFile(filePath));
 	}
 	
-	public static void addProperties(String name, Properties properties){
+	public void addProperties(String name, Properties properties){
 		configurator.put(name, properties);
 	}
 	
-	public static Properties loadPropertiesFromFile(String filePath) throws IOException, IllegalArgumentException{
+	public Properties loadPropertiesFromFile(String filePath) throws IOException, IllegalArgumentException{
 		Properties properties = new Properties();
 		File file = new File(filePath);
 		FileInputStream fis = new FileInputStream(file);
@@ -53,12 +53,12 @@ public enum SystemConfigurator {
 		return properties;
 	}
 	
-	public static void loadConfigFile(String configPath) throws IOException, IllegalArgumentException{
+	public void loadConfigFile(String configPath) throws IOException, IllegalArgumentException{
 		Properties config = loadPropertiesFromFile(configPath);
 		loadConfigProperties(config);
 	}
 	
-	public static void loadConfigProperties(Properties config){
+	public void loadConfigProperties(Properties config){
 		Iterator<Object> it = config.keySet().iterator();
 		while(it.hasNext()){
 			try{
