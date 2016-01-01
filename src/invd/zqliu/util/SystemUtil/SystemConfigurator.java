@@ -29,11 +29,15 @@ public enum SystemConfigurator {
 		}
 	}
 	
-	public void addProperties(String name, String filePath) throws IOException, IllegalArgumentException{
+	public void addProperties(String name, String filePath) throws IOException{
+		if(configurator.containsKey(name))
+			throw new IllegalArgumentException("Config properties with name "+name+" already exists!");
 		configurator.put(name, loadPropertiesFromFile(filePath));
 	}
 	
 	public void addProperties(String name, Properties properties){
+		if(configurator.containsKey(name))
+			throw new IllegalArgumentException("Config properties with name "+name+" already exists!");
 		configurator.put(name, properties);
 	}
 	
