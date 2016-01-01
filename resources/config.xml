@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>Ĭ������</comment>
+<entry key="org.ietools.pdftable.PdfLineAndTextParser.Util.StringTypeDecider">StringType.xml</entry>
+<entry key="org.ietools.pdftable.PdfLineAndTextParser.Util.ItemTypeDecider">ItemType.xml</entry>
+<entry key="org.ietools.pdftable.PdfLineAndTextParser.PDFLineAndTextParser">PDFLineAndTextParser.properties</entry>
+<entry key="org.ietools.pdftable.Rectangles.DefaultRectangleComparator">DefaultRectangleComparisonSetting.xml</entry>
+</properties>

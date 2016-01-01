@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>类型归属</comment>
+<entry key="CONTENT">NO_MATCH | NUMBER | PERCENTAGE | NO_VALUE</entry>
+<entry key="HEADER">NO_MATCH</entry>
+</properties>
