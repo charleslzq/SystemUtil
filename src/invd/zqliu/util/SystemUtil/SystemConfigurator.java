@@ -74,7 +74,7 @@ public enum SystemConfigurator {
 	}
 	
 	public Properties getProperties(String name){
-		return configurator.get(name);
+		return (Properties) configurator.get(name).clone();
 	}
 	
 	public Set<String> keySet(){
