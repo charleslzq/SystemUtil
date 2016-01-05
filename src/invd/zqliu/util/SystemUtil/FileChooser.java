@@ -31,7 +31,7 @@ public class FileChooser {
         return files;
 	}
 	
-	public List<File> chooserFileAndDir(){
+	public List<File> chooseFileAndDir(){
 		List<File> files = new ArrayList<File>();
 		
 		chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
@@ -50,7 +50,7 @@ public class FileChooser {
         return files;
 	}
 	
-	public List<File> chooserFileAndDirRecursively(){
+	public List<File> chooseFileAndDirRecursively(){
 		List<File> files = new ArrayList<File>();
 		
 		chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
@@ -64,32 +64,6 @@ public class FileChooser {
         		}else if(file.isDirectory())
         			files.addAll(findFilesInDirRecursively(file));
         	}
-        }
-        
-        return files;
-	}
-	
-	public List<File> chooseDir(){
-		List<File> files = new ArrayList<File>();
-		
-		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-		int open = chooser.showOpenDialog(null);
-        if(open == JFileChooser.APPROVE_OPTION){ //打开文件
-        	File dir = chooser.getSelectedFile();
-        	files.addAll(findFilesInDir(dir));
-        }
-        
-        return files;
-	}
-	
-	public List<File> chooserDirRecursively(){
-		List<File> files = new ArrayList<File>();
-		
-		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-		int open = chooser.showOpenDialog(null);
-        if(open == JFileChooser.APPROVE_OPTION){ //打开文件
-        	File dir = chooser.getSelectedFile();
-        	files.addAll(findFilesInDirRecursively(dir));
         }
         
         return files;
